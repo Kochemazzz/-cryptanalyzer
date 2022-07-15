@@ -1,0 +1,7 @@
+Привет это первая строка!
+Зашифруй меня!
+
+Hello it's a first string!
+encode me!
+
+

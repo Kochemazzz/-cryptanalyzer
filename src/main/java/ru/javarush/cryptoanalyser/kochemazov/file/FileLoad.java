@@ -1,7 +1,11 @@
 package ru.javarush.cryptoanalyser.kochemazov.file;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 public class FileLoad {
     private Path path;
@@ -36,5 +40,13 @@ public class FileLoad {
     }
     public Path getPath(Path path) {
         return this.path = path;
+    }
+
+    public void Encryption(Path path) throws IOException {
+        List<String> read = Files.readAllLines(path);
+        for (String s : read) {
+            System.out.println(Arrays.toString(s.split("")));
+        }
+
     }
 }
