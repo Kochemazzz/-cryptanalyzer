@@ -1,5 +1,6 @@
 package ru.javarush.cryptoanalyser.kochemazov;
 import ru.javarush.cryptoanalyser.kochemazov.bias.InputBias;
+import ru.javarush.cryptoanalyser.kochemazov.commands.Encryption;
 import ru.javarush.cryptoanalyser.kochemazov.file.FileLoad;
 
 import java.io.IOException;
@@ -12,7 +13,9 @@ public class Runner {
         FileLoad fileLoad = new FileLoad();
         fileLoad.setPath();
         Path path = fileLoad.getPath();
-        fileLoad.Encryption(path);
+        fileLoad.ReadFile(path);
+        Encryption encrypt = new Encryption();
+        encrypt.encrypt(fileLoad.getRead(),inputBias.getKey());
 
 
     }

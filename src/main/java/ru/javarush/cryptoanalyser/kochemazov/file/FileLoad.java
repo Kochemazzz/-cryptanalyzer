@@ -11,6 +11,7 @@ public class FileLoad {
     private Path path;
     private final Scanner scanner = new Scanner(System.in);
     private String newPath;
+    private String read;
     public void setPath() {
         while (true) {
             this.newPath = scanner.nextLine();
@@ -42,11 +43,13 @@ public class FileLoad {
         return this.path = path;
     }
 
-    public void Encryption(Path path) throws IOException {
-        List<String> read = Files.readAllLines(path);
-        for (String s : read) {
-            System.out.println(Arrays.toString(s.split("")));
-        }
+    public void ReadFile(Path path) throws IOException {
+        String read = Files.readString(path);
+        this.read = read;
+        System.out.println("Файл прочтен успешно");
+    }
 
+    public String getRead(){
+        return this.read;
     }
 }
