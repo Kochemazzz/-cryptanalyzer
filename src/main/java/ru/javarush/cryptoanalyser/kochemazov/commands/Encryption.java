@@ -15,7 +15,13 @@ public class Encryption {
                 this.output += alphabet.charAt(IndexInAlpabetWithBias);
             }
         }
-        System.out.println(this.output);
+        System.out.println("Файл зашифрован" + this.output);
         return this.output;
+    }
+    public void setOutput(String output) {
+        this.output = output;
+    }
+    public String getOutput() {
+        return output;
     }
 }
