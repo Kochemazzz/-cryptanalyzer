@@ -3,25 +3,29 @@ import ru.javarush.cryptoanalyser.kochemazov.bias.InputBias;
 import ru.javarush.cryptoanalyser.kochemazov.commands.BrutForce;
 import ru.javarush.cryptoanalyser.kochemazov.commands.Decryption;
 import ru.javarush.cryptoanalyser.kochemazov.commands.Encryption;
+import ru.javarush.cryptoanalyser.kochemazov.exceptions.MainExceptionRun;
 import ru.javarush.cryptoanalyser.kochemazov.file.FileLoad;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.InputMismatchException;
 public class Runner {
-    public static void main(String[] args) throws IOException {
-        InputBias inputBias = new InputBias();
-        inputBias.setKey();
-        FileLoad fileLoad = new FileLoad();
-        fileLoad.setPath();
-        Path path = fileLoad.getPath();
-        fileLoad.ReadFile(path);
-        Encryption encrypt = new Encryption();
-        encrypt.encrypt(fileLoad.getRead(),inputBias.getKey());
-        Decryption decrypt = new Decryption();
-        decrypt.decrypt(encrypt.getOutput(),inputBias.getKey());
-        BrutForce brutForce = new BrutForce();
-        brutForce.BrutForcing(encrypt.getOutput());
+    public static void main(String[] args) {
 
-
+        try {
+            FileLoad.setPathInput();
+            InputBias.setKey();
+            Encryption.encrypt(FileLoad.ReadLineString,InputBias.getKey());
+            Decryption.decrypt(Encryption.getOutput(),InputBias.getKey());
+            BrutForce.BrutForcing(Encryption.getOutput());
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Ошибка ввода");
+        }
+        catch (MainExceptionRun e) {
+            System.out.println("Что-то пошло не так");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

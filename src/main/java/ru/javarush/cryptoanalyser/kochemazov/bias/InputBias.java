@@ -1,24 +1,24 @@
 package ru.javarush.cryptoanalyser.kochemazov.bias;
 import java.util.Scanner;
 public class InputBias {
-    private int KEY = 0;
-    private final Scanner scanner = new Scanner(System.in);
-    public void setKey() {
+    private static int KEY = 0;
+    private static final Scanner scanner = new Scanner(System.in);
+    public static void setKey() {
         while (true) {
-            System.out.println("Введите пожалуйста сдвиг");
+            System.out.println("Please, input bias!");
             System.out.println();
-            this.KEY = scanner.nextInt();
-            if (this.KEY > 0 && this.KEY < 33) {
-                System.out.println("Сдвиг задан правильно");
+            KEY = scanner.nextInt();
+            if (KEY > 0 && KEY < 33) {
+                System.out.println("bias add");
                 break;
             } else {
-                System.out.println("Сдвиг задан неправильно");
+                System.out.println("bias not supported");
             }
         }
     }
-    public int getKey() {
-        System.out.println("Номер сдвига: " + this.KEY);
-        return this.KEY;
+    public static int getKey() {
+        System.out.println("number of bias: " + KEY);
+        return KEY;
     }
 
 }

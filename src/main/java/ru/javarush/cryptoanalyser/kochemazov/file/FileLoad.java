@@ -2,54 +2,38 @@ package ru.javarush.cryptoanalyser.kochemazov.file;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 public class FileLoad {
-    private Path path;
-    private final Scanner scanner = new Scanner(System.in);
-    private String newPath;
-    private String read;
-    public void setPath() {
+    private static Path pathInput;
+    public static String ReadLineString ;
+    private static final Scanner scanner = new Scanner(System.in);
+    public static Path getPathInput() {
+        return FileLoad.pathInput;
+    }
+    public static void setPathInput(Path pathInput) {
         while (true) {
-            this.newPath = scanner.nextLine();
-            this.path = Path.of(this.newPath);
-            if (Files.exists(this.path)) {
-                System.out.println("Файл существует");
+            if (Files.exists(pathInput)) {
+                FileLoad.pathInput = pathInput;
+                System.out.println("path in a local");
+                System.out.println("done");
                 break;
             } else {
-                System.out.println("Файл не существует");
+                System.out.println("Path is a wrong!");
             }
         }
     }
-    public void setPath(String path) {
+    public static void setPathInput() throws IOException {
         while (true) {
-            this.newPath = path;
-            this.path = Path.of(this.newPath);
-            if (Files.exists(this.path)) {
-                System.out.println("Файл существует");
+            String inputString = scanner.nextLine();
+            Path newPath = Path.of(inputString);
+            if (Files.exists(newPath)) {
+                System.out.println("File on board!");
+                FileLoad.pathInput = newPath;
+                FileLoad.ReadLineString = String.valueOf(Files.readAllLines(FileLoad.pathInput));
                 break;
             } else {
-                System.out.println("Файл не существует");
+                System.out.println("Not file in local directory");
             }
         }
-    }
-    public Path getPath() {
-        return this.path;
-    }
-    public Path getPath(Path path) {
-        return this.path = path;
-    }
-
-    public void ReadFile(Path path) throws IOException {
-        String read = Files.readString(path);
-        this.read = read;
-        System.out.println("Файл прочтен успешно");
-    }
-
-    public String getRead(){
-        return this.read;
     }
 }
