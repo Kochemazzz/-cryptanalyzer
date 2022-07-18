@@ -1,5 +1,6 @@
 package ru.javarush.cryptoanalyser.kochemazov;
 import ru.javarush.cryptoanalyser.kochemazov.bias.InputBias;
+import ru.javarush.cryptoanalyser.kochemazov.commands.BrutForce;
 import ru.javarush.cryptoanalyser.kochemazov.commands.Decryption;
 import ru.javarush.cryptoanalyser.kochemazov.commands.Encryption;
 import ru.javarush.cryptoanalyser.kochemazov.file.FileLoad;
@@ -18,6 +19,8 @@ public class Runner {
         encrypt.encrypt(fileLoad.getRead(),inputBias.getKey());
         Decryption decrypt = new Decryption();
         decrypt.decrypt(encrypt.getOutput(),inputBias.getKey());
+        BrutForce brutForce = new BrutForce();
+        brutForce.BrutForcing(encrypt.getOutput());
 
 
     }
